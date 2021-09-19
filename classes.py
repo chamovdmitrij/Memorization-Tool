@@ -1,3 +1,5 @@
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 # class Switch(object):
 #     def __init__(self, value):
 #         self.value = value  # the value to be looking for
@@ -47,16 +49,14 @@
 #             print()
 #             break
 
-class flashcard:
-    __question: str
-    __answer: str
 
-    def __init__(self, question, answer):
-        self.__question = question
-        self.__answer = answer
+Base = declarative_base()
 
-    def get_question(self):
-        return str(self.__question)
 
-    def get_answer(self):
-        return str(self.__answer)
+class flashcard(Base):
+
+    __tablename__ = 'flashcard'
+
+    id = Column(Integer, primary_key=True)
+    _question = Column(String)
+    _answer = Column(String)
